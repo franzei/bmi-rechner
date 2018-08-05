@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html>
+<head>
+	<title>Boddy-Mass-Index ausrechnen</title>
+	<meta charset="utf-8">
+	<script>
+window.onload = function() {
+		document.getElementById( 'btn' ).onclick = function( event ) {
+		event.preventDefault();
+		var eingabe1, eingabe2, ausgabe, ausgabe2, x_pos, y_pos;
+		eingabe1 = document.getElementById( 'z1' ).value*0.01;
+		eingabe2 = document.getElementById( 'z2' ).value * 10/10;
+		//x_pos = 150;
+		//y_pos = 240-(eingabe2);
+
+		x_pos = 0.10685*bild.width + (eingabe1 - 1.60)*(bild.width * 2.0161);
+		y_pos = 0.81395*bild.height - (eingabe2 - 40) *(bild.height * 0.00997);
+document.getElementById( 'punkt' ).style.opacity = 1;
+
+  
+
+		ausgabe2 =  eingabe2 / (eingabe1 * eingabe1);
+ausgabe = Math.round(ausgabe2 *1000) /1000;
+punkt.style.left = x_pos+'px';
+punkt.style.top = y_pos+'px';
+
+if (ausgabe < 18.5) {
+	document.getElementById('ausgabe').innerHTML = 'Der BMI ist <b>'+ ausgabe +'</b>' + '.  Das ist Untergewicht <b></b>';
+} else if (ausgabe >= 18.5 && ausgabe < 25) {
+	document.getElementById('ausgabe').innerHTML = 'Der BMI ist <b>'+ ausgabe +'</b>' + '.  Das ist Normalgewicht <b></b>';
+}	else if (ausgabe >= 25 && ausgabe < 30) {
+		document.getElementById('ausgabe').innerHTML = 'Der BMI ist <b>'+ ausgabe +'</b>' + '.  Das ist Ubergewicht <b></b>';
+}		else  {
+			document.getElementById('ausgabe').innerHTML = 'Der BMI ist <b>'+ ausgabe +'</b>' + '.  Das ist Adipositas <b></b>';
+}}}
+	</script>
+	<style>
+#punkt {
+    background-color: black;
+		position: relative;
+    width: 12px;
+    height: 12px;
+    /*top: 10px;
+    left: 10px;*/
+    border: 1px solid black;
+    opacity: 0;
+}
+#bild {
+	position:absolute;
+
+
+}
+	</style>
+</head>
+<body>
+<h1>Body-Mass-Index</h1>
+<form>
+	<input type="text" id="z1" autocomplete="off"><label>Größe in cm</label><br>
+	<input type="text" id="z2" autocomplete="off">Gewicht in kg<br>
+  <button id="btn">BMI berechnen</button>
+</form><br>
+<div id="ausgabe"></div><br>
+<div id="tt">
+	<img id="bild" src="bmi_tabelle.gif" />
+<div id="punkt"></div>
+</div>
+</body>
+</html>
